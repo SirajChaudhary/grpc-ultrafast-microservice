@@ -102,7 +102,7 @@ employee-directory-service
 │   │       │   ├── EmployeeAlreadyExistsException.java
 │   │       │   └── EmployeeNotFoundException.java
 │   │       ├── grpc
-│   │       │   └── EmployeeGrpcService.java
+│   │       │   └── EmployeeGrpcService.java    <----- gRPC APIs
 │   │       ├── mapper
 │   │       │   └── EmployeeMapper.java
 │   │       ├── repository
@@ -942,10 +942,15 @@ After starting the application, import the `employee.proto` file into your prefe
 ### CRUD APIs
 
 - **CreateEmployee:** Creates a new employee record.
+  <img width="3074" height="1524" alt="image" src="https://github.com/user-attachments/assets/c09d398f-f811-4dbd-9067-1b1cde3269c1" />
 - **GetEmployee:** Retrieves an employee by ID.
+  <img width="3068" height="1258" alt="image" src="https://github.com/user-attachments/assets/2bd4737c-5faa-405b-9d16-449d0f2a3680" />
 - **GetAllEmployees:** Returns all employees with pagination and sorting support.
+  <img width="3068" height="1836" alt="image" src="https://github.com/user-attachments/assets/e52c4fbe-ec0a-4de2-adc5-0fad190c069d" />
 - **UpdateEmployee:** Updates an existing employee.
+  <img width="3072" height="1586" alt="image" src="https://github.com/user-attachments/assets/41582543-a4c3-4dee-890c-10ab013e8b30" />
 - **DeleteEmployee:** Deletes an employee by ID.
+  <img width="3070" height="884" alt="image" src="https://github.com/user-attachments/assets/4300dac0-ea8a-40c5-8088-1b21258c1811" />
 
 ### Search APIs
 
@@ -966,6 +971,7 @@ After starting the application, import the `employee.proto` file into your prefe
     - firstName
     - lastName
     - joiningDate
+  <img width="3074" height="1556" alt="image" src="https://github.com/user-attachments/assets/18e7aeaf-6adf-4b4f-8415-0e86f89f0a3c" />
 
 **FindEmployeesByDepartment**
 
@@ -974,15 +980,20 @@ After starting the application, import the `employee.proto` file into your prefe
     - Department filtering
     - Pagination
     - Sorting
+  <img width="3070" height="1858" alt="image" src="https://github.com/user-attachments/assets/8ab6fa90-8465-40be-be7f-167bd8d67c0e" />
 
 ### Validation APIs
 
 - **ExistsByEmployeeCode:** Checks whether an employee code already exists.
+  <img width="3072" height="812" alt="image" src="https://github.com/user-attachments/assets/7b6bb303-963a-4e1c-9b1f-11b86547dba4" />
+
 - **ExistsByEmail:** Checks whether an email address already exists.
+  <img width="3072" height="838" alt="image" src="https://github.com/user-attachments/assets/a9932f55-8221-44af-b2e9-21d5e6367b73" />
 
 ### Utility APIs
 
 - **CountEmployees:** Returns the total number of employees in the database.
+  <img width="3070" height="842" alt="image" src="https://github.com/user-attachments/assets/46aaf30e-c81f-4308-a90c-5427dd7d0640" />
 
 ---
 
