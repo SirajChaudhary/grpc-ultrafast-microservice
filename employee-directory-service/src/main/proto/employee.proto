@@ -1,0 +1,270 @@
+/*
+============================================================================
+Employee Directory gRPC Contract
+
+Defines the complete gRPC API contract for the Employee Directory Service.
+
+• Uses Protocol Buffers (.proto) for contract-first development.
+• Generates client and server code automatically during the Maven build.
+• Uses Unary RPC communication (One Request -> One Response).
+• Field numbers uniquely identify message fields and should not be changed
+  after the API is published.
+
+============================================================================
+*/
+
+syntax = "proto3";
+
+/* Protocol Buffers package name. */
+package employeedirectory.v1;
+
+/* Java package for generated classes. */
+option java_package = "com.sirajchaudhary.employeedirectory.grpc";
+
+/* Generates each message as a separate Java class. */
+option java_multiple_files = true;
+
+/* Name of the generated outer wrapper class. */
+option java_outer_classname = "EmployeeProto";
+
+/* Employee gRPC APIs. */
+service EmployeeService {
+
+  /* CRUD APIs */
+
+  // Creates a new employee.
+  rpc CreateEmployee(CreateEmployeeRequest)
+      returns (EmployeeResponse);
+
+  // Retrieves an employee by ID.
+  rpc GetEmployee(GetEmployeeRequest)
+      returns (EmployeeResponse);
+
+  // Retrieves employees with pagination and sorting.
+  rpc GetAllEmployees(GetAllEmployeesRequest)
+      returns (EmployeeListResponse);
+
+  // Updates an existing employee.
+  rpc UpdateEmployee(UpdateEmployeeRequest)
+      returns (EmployeeResponse);
+
+  // Deletes an employee by ID.
+  rpc DeleteEmployee(DeleteEmployeeRequest)
+      returns (DeleteEmployeeResponse);
+
+  /* Search APIs */
+
+  // Searches employees by Employee Code, First Name, or Last Name.
+  rpc SearchEmployees(SearchEmployeesRequest)
+      returns (EmployeeListResponse);
+
+  /* Filter APIs */
+
+  // Retrieves employees by department.
+  rpc FindEmployeesByDepartment(FindEmployeesByDepartmentRequest)
+      returns (EmployeeListResponse);
+
+  /* Validation APIs */
+
+  // Checks whether an employee code exists.
+  rpc ExistsByEmployeeCode(ExistsByEmployeeCodeRequest)
+      returns (ExistsResponse);
+
+  // Checks whether an email address exists.
+  rpc ExistsByEmail(ExistsByEmailRequest)
+      returns (ExistsResponse);
+
+  /* Statistics APIs */
+
+  // Returns the total number of employees.
+  rpc CountEmployees(CountEmployeesRequest)
+      returns (CountResponse);
+}
+
+/* Common employee model shared across multiple APIs. */
+message EmployeeMessage {
+
+  int64 id = 1;
+
+  string employeeCode = 2;
+
+  string firstName = 3;
+
+  string lastName = 4;
+
+  string email = 5;
+
+  string phoneNumber = 6;
+
+  string department = 7;
+
+  string designation = 8;
+
+  string officeLocation = 9;
+
+  string joiningDate = 10;
+
+  string status = 11;
+}
+
+/* Request Messages */
+
+/* Request to create a new employee. */
+message CreateEmployeeRequest {
+
+  string employeeCode = 1;
+
+  string firstName = 2;
+
+  string lastName = 3;
+
+  string email = 4;
+
+  string phoneNumber = 5;
+
+  string department = 6;
+
+  string designation = 7;
+
+  string officeLocation = 8;
+
+  string joiningDate = 9;
+
+  string status = 10;
+}
+
+/* Request to retrieve an employee by ID. */
+message GetEmployeeRequest {
+
+  int64 id = 1;
+}
+
+/* Request to retrieve employees with pagination and sorting. */
+message GetAllEmployeesRequest {
+
+  int32 page = 1;
+
+  int32 size = 2;
+
+  string sortBy = 3;
+
+  string sortDirection = 4;
+}
+
+/* Request to update an existing employee. */
+message UpdateEmployeeRequest {
+
+  int64 id = 1;
+
+  string employeeCode = 2;
+
+  string firstName = 3;
+
+  string lastName = 4;
+
+  string email = 5;
+
+  string phoneNumber = 6;
+
+  string department = 7;
+
+  string designation = 8;
+
+  string officeLocation = 9;
+
+  string joiningDate = 10;
+
+  string status = 11;
+}
+
+/* Request to delete an employee by ID. */
+message DeleteEmployeeRequest {
+
+  int64 id = 1;
+}
+
+/* Request to search employees using a keyword. */
+message SearchEmployeesRequest {
+
+  string keyword = 1;
+
+  int32 page = 2;
+
+  int32 size = 3;
+
+  string sortBy = 4;
+
+  string sortDirection = 5;
+}
+
+/* Request to retrieve employees by department. */
+message FindEmployeesByDepartmentRequest {
+
+  string department = 1;
+
+  int32 page = 2;
+
+  int32 size = 3;
+
+  string sortBy = 4;
+
+  string sortDirection = 5;
+}
+
+/* Request to check whether an employee code exists. */
+message ExistsByEmployeeCodeRequest {
+
+  string employeeCode = 1;
+}
+
+/* Request to check whether an email address exists. */
+message ExistsByEmailRequest {
+
+  string email = 1;
+}
+
+/* Empty request to retrieve the total employee count. */
+message CountEmployeesRequest {
+}
+
+/* Response Messages */
+
+/* Response containing a single employee. */
+message EmployeeResponse {
+
+  EmployeeMessage employee = 1;
+}
+
+/* Response containing employees with pagination details. */
+message EmployeeListResponse {
+
+  repeated EmployeeMessage employees = 1;
+
+  int64 totalElements = 2;
+
+  int32 totalPages = 3;
+
+  int32 currentPage = 4;
+
+  int32 pageSize = 5;
+}
+
+/* Response returned after deleting an employee. */
+message DeleteEmployeeResponse {
+
+  bool success = 1;
+
+  string message = 2;
+}
+
+/* Response indicating whether a resource exists. */
+message ExistsResponse {
+
+  bool exists = 1;
+}
+
+/* Response containing the total employee count. */
+message CountResponse {
+
+  int64 count = 1;
+}
