@@ -102,7 +102,7 @@ employee-directory-service
 │   │       │   ├── EmployeeAlreadyExistsException.java
 │   │       │   └── EmployeeNotFoundException.java
 │   │       ├── grpc
-│   │       │   └── EmployeeGrpcService.java    <----- gRPC APIs
+│   │       │   └── EmployeeGrpcService.java    <------ gRPC API Implementation (Implements all RPCs defined in employee.proto)
 │   │       ├── mapper
 │   │       │   └── EmployeeMapper.java
 │   │       ├── repository
@@ -114,7 +114,7 @@ employee-directory-service
 │   │       └── EmployeeDirectoryApplication.java
 │   │
 │   ├── proto
-│   │   └── employee.proto
+│   │   └── employee.proto                      <------ gRPC API Contract
 │   │
 │   └── resources
 │       ├── application.yml
@@ -123,6 +123,8 @@ employee-directory-service
 ├── pom.xml
 └── README.md
 ```
+
+You can quickly understand the project by exploring the [`employee.proto`](employee-directory-service/src/main/proto/employee.proto) contract and its [`EmployeeGrpcService.java`](employee-directory-service/src/main/java/com/sirajchaudhary/employeedirectory/grpc/EmployeeGrpcService.java) implementation.
 
 ### Project Skeleton
 
